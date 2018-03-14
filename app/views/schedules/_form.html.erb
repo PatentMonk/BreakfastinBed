@@ -1,0 +1,92 @@
+<%= form_for(schedule) do |f| %>
+  <% if schedule.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>
+
+      <ul>
+      <% schedule.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :monday_opens_at %>
+    <%= f.datetime_select :monday_opens_at %>
+  </div>
+
+  <div class="field">
+    <%= f.label :monday_closes_at %>
+    <%= f.datetime_select :monday_closes_at %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tuesday_opens_at %>
+    <%= f.datetime_select :tuesday_opens_at %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tuesday_closes_at %>
+    <%= f.datetime_select :tuesday_closes_at %>
+  </div>
+
+  <div class="field">
+    <%= f.label :wednesday_opens_at %>
+    <%= f.datetime_select :wednesday_opens_at %>
+  </div>
+
+  <div class="field">
+    <%= f.label :wednesday_closes_at %>
+    <%= f.datetime_select :wednesday_closes_at %>
+  </div>
+
+  <div class="field">
+    <%= f.label :thursday_opens_at %>
+    <%= f.datetime_select :thursday_opens_at %>
+  </div>
+
+  <div class="field">
+    <%= f.label :thursday_closes_at %>
+    <%= f.datetime_select :thursday_closes_at %>
+  </div>
+
+  <div class="field">
+    <%= f.label :friday_opens_at %>
+    <%= f.datetime_select :friday_opens_at %>
+  </div>
+
+  <div class="field">
+    <%= f.label :friday_closes_at %>
+    <%= f.datetime_select :friday_closes_at %>
+  </div>
+
+  <div class="field">
+    <%= f.label :saturday_opens_at %>
+    <%= f.datetime_select :saturday_opens_at %>
+  </div>
+
+  <div class="field">
+    <%= f.label :saturday_closes_at %>
+    <%= f.datetime_select :saturday_closes_at %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sunday_opens_at %>
+    <%= f.datetime_select :sunday_opens_at %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sunday_closes_at %>
+    <%= f.datetime_select :sunday_closes_at %>
+  </div>
+
+  <div class="field">
+    <%= f.label :restaurant_id %>
+    <%= f.number_field :restaurant_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,59 @@
+# == Schema Information
+#
+# Table name: schedules
+#
+#  id                  :integer          not null, primary key
+#  monday_opens_at     :datetime
+#  monday_closes_at    :datetime
+#  tuesday_opens_at    :datetime
+#  tuesday_closes_at   :datetime
+#  wednesday_opens_at  :datetime
+#  wednesday_closes_at :datetime
+#  thursday_opens_at   :datetime
+#  thursday_closes_at  :datetime
+#  friday_opens_at     :datetime
+#  friday_closes_at    :datetime
+#  saturday_opens_at   :datetime
+#  saturday_closes_at  :datetime
+#  sunday_opens_at     :datetime
+#  sunday_closes_at    :datetime
+#  restaurant_id       :integer
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  monday_opens_at: 2018-02-17 22:48:14
+  monday_closes_at: 2018-02-17 22:48:14
+  tuesday_opens_at: 2018-02-17 22:48:14
+  tuesday_closes_at: 2018-02-17 22:48:14
+  wednesday_opens_at: 2018-02-17 22:48:14
+  wednesday_closes_at: 2018-02-17 22:48:14
+  thursday_opens_at: 2018-02-17 22:48:14
+  thursday_closes_at: 2018-02-17 22:48:14
+  friday_opens_at: 2018-02-17 22:48:14
+  friday_closes_at: 2018-02-17 22:48:14
+  saturday_opens_at: 2018-02-17 22:48:14
+  saturday_closes_at: 2018-02-17 22:48:14
+  sunday_opens_at: 2018-02-17 22:48:14
+  sunday_closes_at: 2018-02-17 22:48:14
+  restaurant_id: 1
+
+two:
+  monday_opens_at: 2018-02-17 22:48:14
+  monday_closes_at: 2018-02-17 22:48:14
+  tuesday_opens_at: 2018-02-17 22:48:14
+  tuesday_closes_at: 2018-02-17 22:48:14
+  wednesday_opens_at: 2018-02-17 22:48:14
+  wednesday_closes_at: 2018-02-17 22:48:14
+  thursday_opens_at: 2018-02-17 22:48:14
+  thursday_closes_at: 2018-02-17 22:48:14
+  friday_opens_at: 2018-02-17 22:48:14
+  friday_closes_at: 2018-02-17 22:48:14
+  saturday_opens_at: 2018-02-17 22:48:14
+  saturday_closes_at: 2018-02-17 22:48:14
+  sunday_opens_at: 2018-02-17 22:48:14
+  sunday_closes_at: 2018-02-17 22:48:14
+  restaurant_id: 1
