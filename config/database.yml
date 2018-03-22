@@ -48,7 +48,4 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: BreakfastInBed_production
-  username: BreakfastInBed
-  password: <%= ENV['BREAKFASTINBED_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
