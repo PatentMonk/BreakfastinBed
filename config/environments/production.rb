@@ -81,7 +81,7 @@ Rails.application.configure do
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
-  config.action_mailer.default_url_options = { :host => 'wakeandbreak.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'www.wakeandbreak.com' }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {
@@ -89,7 +89,7 @@ Rails.application.configure do
     :address        => ENV['MAILGUN_SMTP_SERVER'],
     :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
     :password       => ENV['MAILGUN_SMTP_PASSWORD'],
-    :domain         => 'wakeandbreak.heroku.com',
+    :domain         => ENV['MAILGUN_DOMAIN'],
     :authentication => :plain,
   }
   config.action_mailer.delivery_method = :smtp
