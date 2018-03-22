@@ -36,7 +36,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.datetime :locked_at
 
       t.string :type, default: 'Purchaser'
-      t.string :uuid, default: "UUID()"
+      t.binary :uuid, limit: 16
 
       t.timestamps null: false
     end
@@ -45,5 +45,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
     add_index :users, :reset_password_token, unique: true
     add_index :users, :confirmation_token,   unique: true
     add_index :users, :unlock_token,         unique: true
+    add_index :users, :uuid,                 unique: true
   end
 end

@@ -3,12 +3,19 @@
 # Table name: descriptions
 #
 #  id              :integer          not null, primary key
-#  words           :text(65535)
-#  connection_id   :integer
-#  connection_type :string(255)
+#  content         :text(65535)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
 
 class Description < ApplicationRecord
+  belongs_to :descriptionable, polymorphic: true, optional: true
+  attribute :uuid, MySQLBinUUID::Type.new
+
+  before_create :generate_uuid
+
+  private
+    def generate_uuid
+      self.uuid = SecureRandom.uuid
+    end
 end

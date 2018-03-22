@@ -13,5 +13,13 @@ module Api
     def authorize_request
       @current_user = (AuthorizeApiRequest.new(request.headers).call)[:user]
     end
+
+    def current_restaurant
+      @current_restaurant ||= Restaurant.find_by(uuid: params[:restaurant_id])
+    end
+
+    def current_order
+      @current_order ||= Order.find_by(uuid: params[:order_id])
+    end
   end
 end

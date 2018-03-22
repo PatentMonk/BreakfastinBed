@@ -23,5 +23,12 @@
 #
 
 class Schedule < ApplicationRecord
-  validates_precense_of :restaurant_id
+  attribute :uuid, MySQLBinUUID::Type.new
+
+  before_create :generate_uuid
+
+  private
+    def generate_uuid
+      self.uuid = SecureRandom.uuid
+    end
 end

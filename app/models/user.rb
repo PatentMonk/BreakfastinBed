@@ -35,6 +35,10 @@ class User < ApplicationRecord
   has_many :orders
   has_one :address
 
+  attribute :uuid, MySQLBinUUID::Type.new
+
+  before_create :generate_uuid
+
   def owner?
     type == Owner.name
   end
@@ -42,4 +46,9 @@ class User < ApplicationRecord
   def purchaser?
     type == Purchaser.name
   end
+
+  private
+    def generate_uuid
+      self.uuid = SecureRandom.uuid
+    end
 end

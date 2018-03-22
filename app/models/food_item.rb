@@ -12,5 +12,16 @@
 #
 
 class FoodItem < ApplicationRecord
-  
+  belongs_to :food_itemable, polymorphic: true, optional: true
+  has_one :description, as: :descriptionable, dependent: :destroy
+  accepts_nested_attributes_for :description, allow_destroy: true
+
+  attribute :uuid, MySQLBinUUID::Type.new
+
+  before_create :generate_uuid
+
+  private
+    def generate_uuid
+      self.uuid = SecureRandom.uuid
+    end
 end

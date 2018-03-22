@@ -14,6 +14,15 @@
 #
 
 class Address < ApplicationRecord
-  belongs_to :user
-  has_one :restaurant
+  belongs_to :user, optional: true
+  belongs_to :addressable, polymorphic: true, optional: true
+
+  attribute :uuid, MySQLBinUUID::Type.new
+
+  before_create :generate_uuid
+
+  private
+    def generate_uuid
+      self.uuid = SecureRandom.uuid
+    end
 end

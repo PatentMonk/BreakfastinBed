@@ -6,10 +6,13 @@ class CreateAddresses < ActiveRecord::Migration[5.0]
       t.string :city
       t.string :state
       t.string :postal
-      t.integer :user_id
-      t.string :uuid, default: "UUID()"
+      t.references :user, foreign_key: true
+      t.references :addressable, polymorphic: true, index: true
+      t.binary :uuid, limit: 16
 
       t.timestamps
     end
+
+    add_index :addresses, :uuid, unique: true
   end
 end

@@ -29,4 +29,5 @@
 
 class Purchaser < User
   has_many :orders
+  has_one :credit_card
 end

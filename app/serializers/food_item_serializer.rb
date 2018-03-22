@@ -1,3 +1,7 @@
 class FoodItemSerializer < BaseSerializer
-  attributes :
+  attributes :name,
+             :price,
+             :image_url
+
+  has_one :description
 end

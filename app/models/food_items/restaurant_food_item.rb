@@ -1,0 +1,2 @@
+class RestaurantFoodItem < FoodItem
+end

@@ -15,10 +15,12 @@ class CreateSchedules < ActiveRecord::Migration[5.0]
       t.datetime :saturday_closes_at
       t.datetime :sunday_opens_at
       t.datetime :sunday_closes_at
-      t.integer :restaurant_id
-      t.string :uuid, default: "UUID()"
+      t.references :restaurant, foreign_key: true
+      t.binary :uuid, limit: 16
 
       t.timestamps
     end
+
+    add_index :schedules, :uuid, unique: true
   end
 end

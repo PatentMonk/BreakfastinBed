@@ -1,8 +1,12 @@
 require 'test_helper'
 
 class OrdersControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   setup do
-    @order = orders(:one)
+    @order = Factory.create(:order)
+    password = "testingapi"
+    sign_in Factory.create(:user, password: password, password_confirmation: password)
   end
 
   test "should get index" do
@@ -17,7 +21,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create order" do
     assert_difference('Order.count') do
-      post orders_url, params: { order: { payment_id: @order.payment_id, purchaser_id: @order.purchaser_id } }
+      post orders_url, params: { order: { purchaser_id: @order.purchaser_id } }
     end
 
     assert_redirected_to order_url(Order.last)
@@ -34,7 +38,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update order" do
-    patch order_url(@order), params: { order: { payment_id: @order.payment_id, purchaser_id: @order.purchaser_id } }
+    patch order_url(@order), params: { order: { purchaser_id: @order.purchaser_id } }
     assert_redirected_to order_url(@order)
   end
 

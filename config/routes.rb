@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-
-  resources :credit_cards
-  resources :orders
   # BROWSER
+  resources :payments
+  resources :credit_cards, except: [:index]
+  resources :orders
   resources :schedules
-  resources :food_items
+  resources :restaurant_food_items
+  resources :order_food_items
   resources :restaurants
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -14,7 +15,14 @@ Rails.application.routes.draw do
   # API
   scope module: :api, defaults: {format: 'json'} do
     namespace :v1 do
-      resources :restaurants
+      resources :restaurants do
+        resources :restaurant_food_items
+      end
+
+      resources :orders do
+        resources :order_food_items
+      end
+      resources :descriptions, only: [:create, :update, :show, :destroy]
       resources :users, only: [:create, :show]
       post 'auth/login', to: 'authentication#authenticate'
     end

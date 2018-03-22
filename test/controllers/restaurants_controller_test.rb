@@ -1,8 +1,12 @@
 require 'test_helper'
 
 class RestaurantsControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   setup do
-    @restaurant = restaurants(:one)
+    @restaurant = Factory.create(:restaurant, address: Factory.create(:address))
+    password = "testingapi"
+    sign_in Factory.create(:user, password: password, password_confirmation: password)
   end
 
   test "should get index" do
@@ -17,7 +21,7 @@ class RestaurantsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create restaurant" do
     assert_difference('Restaurant.count') do
-      post restaurants_url, params: { restaurant: { address_id: @restaurant.address_id, food_type: @restaurant.food_type, name: @restaurant.name } }
+      post restaurants_url, params: { restaurant: { food_type: @restaurant.food_type, name: @restaurant.name } }
     end
 
     assert_redirected_to restaurant_url(Restaurant.last)
@@ -34,7 +38,7 @@ class RestaurantsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update restaurant" do
-    patch restaurant_url(@restaurant), params: { restaurant: { address_id: @restaurant.address_id, food_type: @restaurant.food_type, name: @restaurant.name } }
+    patch restaurant_url(@restaurant), params: { restaurant: { food_type: @restaurant.food_type, name: @restaurant.name } }
     assert_redirected_to restaurant_url(@restaurant)
   end
 

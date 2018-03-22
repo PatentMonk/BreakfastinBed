@@ -1,11 +1,6 @@
 class CreditCardsController < ApplicationController
   before_action :set_credit_card, only: [:show, :edit, :update, :destroy]
-
-  # GET /credit_cards
-  # GET /credit_cards.json
-  def index
-    @credit_cards = CreditCard.all
-  end
+  before_action :set_attributes, only: [:create]
 
   # GET /credit_cards/1
   # GET /credit_cards/1.json
@@ -14,7 +9,7 @@ class CreditCardsController < ApplicationController
 
   # GET /credit_cards/new
   def new
-    @credit_card = CreditCard.new
+    @credit_card = current_user.build_credit_card
   end
 
   # GET /credit_cards/1/edit
@@ -24,7 +19,7 @@ class CreditCardsController < ApplicationController
   # POST /credit_cards
   # POST /credit_cards.json
   def create
-    @credit_card = CreditCard.new(credit_card_params)
+    @credit_card = current_user.build_credit_card(credit_card_params)
 
     respond_to do |format|
       if @credit_card.save
@@ -64,11 +59,15 @@ class CreditCardsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_credit_card
-      @credit_card = CreditCard.find(params[:id])
+      @credit_card = current_user.credit_card
+    end
+
+    def set_attributes
+      credit_card_params[:address_attributes][:user_id] = current_user.id if credit_card_params[:address_attributes]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def credit_card_params
-      params.require(:credit_card).permit(:number, :month, :year, :address_id, :purchaser_id)
+      params.require(:credit_card).permit(:number, :month, :year, :purchaser_id, address_attributes: [:id, :address_one, :address_two, :city, :state, :postal, :user_id])
     end
 end

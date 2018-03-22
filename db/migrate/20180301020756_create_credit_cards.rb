@@ -6,11 +6,13 @@ class CreateCreditCards < ActiveRecord::Migration[5.0]
       t.string :year
       t.string :first_name
       t.string :last_name
-      t.integer :address_id
-      t.integer :purchaser_id
-      t.string :uuid, default: "UUID()"
+      t.references :purchaser, references: :user
+      t.binary :uuid, limit: 16
 
       t.timestamps
     end
+
+    add_foreign_key :credit_cards, :users, column: :purchaser_id
+    add_index :credit_cards, :uuid, unique: true
   end
 end

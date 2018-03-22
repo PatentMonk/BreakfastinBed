@@ -1,0 +1,2 @@
+class OrderFoodItem < FoodItem
+end

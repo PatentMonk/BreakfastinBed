@@ -1,8 +1,12 @@
 require 'test_helper'
 
 class SchedulesControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   setup do
-    @schedule = schedules(:one)
+    @schedule = Factory.create(:schedule)
+    password = "testingapi"
+    sign_in Factory.create(:user, password: password, password_confirmation: password)
   end
 
   test "should get index" do

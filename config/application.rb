@@ -13,5 +13,6 @@ module BreakfastInBed
     # -- all .rb files in that directory are automatically loaded.
 
     config.autoload_paths += %W(#{config.root}/app/models/users)
+    config.autoload_paths += %W(#{config.root}/app/models/food_items)
   end
 end
